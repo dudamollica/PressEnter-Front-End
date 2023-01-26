@@ -3,7 +3,7 @@ import GlobalStyle from "./Constants/GlobalStyle";
 import AuthProvider from "./AppContext/auth.js";
 import MainPage from "./Pages/MainPage";
 import ProductPage from "./Pages/ProductPage";
-import CategoryPage from "./Pages/CategoyPage";
+import CategoryPage from "./Pages/CategoryPage";
 
 function App() {
   return (
