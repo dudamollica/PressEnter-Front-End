@@ -4,6 +4,7 @@ export const AuthContext = createContext({});
 
 export default function AuthProvider({ children }) {
   const [token, setToken] = useState("");
+  const [carCount, setCarCount] = useState(0)
 
   function saveToken(token) {
     setToken(token);
@@ -15,6 +16,7 @@ export default function AuthProvider({ children }) {
       value={{
         token,
         saveToken,
+        carCount
       }}
     >
       {children}

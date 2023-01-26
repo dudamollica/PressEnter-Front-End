@@ -42,6 +42,13 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}`;
+}
+button:hover{
+	cursor: pointer;
+}
+div, h1,h2,span, button, input{
+	font-family: 'Recursive';
+}
+`;
 
 export default GlobalStyle;
