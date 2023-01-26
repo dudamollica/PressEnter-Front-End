@@ -3,6 +3,7 @@ import GlobalStyle from "./Constants/GlobalStyle";
 import AuthProvider from "./AppContext/auth.js";
 import MainPage from "./Pages/MainPage";
 import ProductPage from "./Pages/ProductPage";
+import CategoryPage from "./Pages/CategoyPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/product" element={<ProductPage />} />
+            <Route path="/category" element={<CategoryPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
