@@ -1,19 +1,13 @@
 import { useState, useContext } from "react";
 import styled from "styled-components";
-import Logo from "../Assets/logo.png";
 import { AuthContext } from "../AppContext/auth";
 import { principal, tertiary } from "../Constants/Colors";
 import logoGif from "../Assets/logo.gif"
 import Login from "./Login";
 
-
-
-
-
 export default function Header() {
   const { carCount } = useContext(AuthContext);
   const [showSignIn, setShowSignIn] = useState(false);
-
   
   return (
     <HeaderContainer>

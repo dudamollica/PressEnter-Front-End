@@ -9,16 +9,6 @@ export default function Slider(props) {
       <h1>{title}</h1>
       <ImgContainer>
         <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
       </ImgContainer>
     </MostSeenContainer>
   );

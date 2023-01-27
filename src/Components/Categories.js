@@ -1,12 +1,19 @@
-import { useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { secondary } from "../Constants/Colors";
 
 export default function Categories() {
+  const [categories, setCategories] = useState([]);
+
   useEffect(() => {
-    const scroll = document.getElementById("1");
-    scroll.scrollIntoView();
+    const URL = "http://localhost:5000/categories"
+    const promise = axios.get(URL);
+    promise.then((res) => {
+      setCategories(res.data);
+    });
+    promise.catch((err) => console.log(err.data));
   }, []);
 
   return (
@@ -14,33 +21,9 @@ export default function Categories() {
       <CategoriesHeaderStyle>
         <div>
           <ion-icon name="list-outline"></ion-icon>
-          <p id="1">Categorias</p>
+          <p>Categorias</p>
         </div>
-        <Link to="/category">Acessórios Cozinha</Link>
-        <Link to="/category">Almofadas</Link>
-        <Link to="/category">Canecas</Link>
-        <Link to="/category">Capachos e tapetes</Link>
-        <Link to="/category">Acessórios Cozinha</Link>
-        <Link to="/category">Acessórios Cozinha</Link>
-        <Link to="/category">Almofadas</Link>
-        <Link to="/category">Canecas</Link>
-        <Link to="/category">Capachos e tapetes</Link>
-        <Link to="/category">Acessórios Cozinha</Link>
-        <Link to="/category">Acessórios Cozinha</Link>
-        <Link to="/category">Almofadas</Link>
-        <Link to="/category">Canecas</Link>
-        <Link to="/category">Capachos e tapetes</Link>
-        <Link to="/category">Acessórios Cozinha</Link>
-        <Link to="/category">Acessórios Cozinha</Link>
-        <Link to="/category">Almofadas</Link>
-        <Link to="/category">Canecas</Link>
-        <Link to="/category">Capachos e tapetes</Link>
-        <Link to="/category">Acessórios Cozinha</Link>
-        <Link to="/category">Acessórios Cozinha</Link>
-        <Link to="/category">Almofadas</Link>
-        <Link to="/category">Canecas</Link>
-        <Link to="/category">Capachos e tapetes</Link>
-        <Link to="/category">Acessórios Cozinha</Link>
+        {categories.map((c)=><Link to={`/category/${c}`}>{c}</Link>)}
       </CategoriesHeaderStyle>
     </>
   );

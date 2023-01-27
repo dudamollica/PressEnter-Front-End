@@ -4,6 +4,7 @@ import AuthProvider from "./AppContext/auth.js";
 import MainPage from "./Pages/MainPage";
 import ProductPage from "./Pages/ProductPage";
 import CategoryPage from "./Pages/CategoryPage";
+import AdminPage from "./Pages/AdminPage";
 
 function App() {
   return (
@@ -13,8 +14,12 @@ function App() {
           <GlobalStyle />
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/product" element={<ProductPage />} />
-            <Route path="/category" element={<CategoryPage />} />
+            <Route path="/product/:id?" element={<ProductPage />} />
+            <Route path="/category/:id" element={<CategoryPage />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin-product" element={<AdminPage />} />
+            <Route path="/admin-category" element={<AdminPage />} />
+            <Route path="/admin-user" element={<AdminPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

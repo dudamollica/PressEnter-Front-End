@@ -1,26 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { secondary } from "../Constants/Colors";
 
-export default function Product() {
+export default function Product(props) {
+  const {product, price, discountPrice, img} = props
   const [showShop, setShowShop] = useState(false);
   const navigate = useNavigate()
-
+ 
   return (
     <>
       <ProductStyle
-      onClick={()=>navigate("/product")}
+      onClick={()=>navigate(`/product/${product}`)}
         showShop={showShop}
         onMouseOver={() => setShowShop(true)}
         onMouseOut={() => setShowShop(false)}
       >
-        <img src="https://static3.tcdn.com.br/img/img_prod/460977/caneca_3d_capacete_darth_vader_star_wars_38235_1_e741db549f538f8222b6646cee49b3ed.jpeg" />
-        <h2>Caneca 3D Capacete</h2>
-        <p>R$99.99</p>
-        <strong>R$49,95</strong>
+        <img src={img} />
+        <h2>{product}</h2>
+        <p>R${price}</p>
+        <strong>R${discountPrice}</strong>
         <span>
-          Em até 3x sem juros <br></br>de R$29,97
+          Em até 3x sem juros <br></br>de R${(discountPrice/3).toFixed(2)}
         </span>
         <button>
           Adicionar ao <ion-icon name="cart-outline"></ion-icon>
@@ -37,6 +38,7 @@ const ProductStyle = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width:250px;
     img {
       height: 230px;
       padding: 20px;
