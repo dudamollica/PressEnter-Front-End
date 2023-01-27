@@ -2,14 +2,25 @@ import Header from "../Components/Header";
 import styled from "styled-components";
 import Footer from "../Components/Footer";
 import Slider from "../Components/Slider";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { secondary } from "../Constants/Colors";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function ProductPage() {
+  const { id } = useParams();
+  const [info, setInfo] = useState([])
+
   useEffect(() => {
     const scroll = document.getElementById("1");
     scroll.scrollIntoView();
+
+    const URL = `http://localhost:5000/product/${id}`;
+    const promise = axios.get(URL);
+    promise.then((res) => {
+      setInfo(res.data);
+    });
+    promise.catch((err) => console.log(err.data));
   }, []);
 
   return (
@@ -20,25 +31,25 @@ export default function ProductPage() {
           <strong>Home</strong>
         </Link>
         <ion-icon name="chevron-forward-outline"></ion-icon>
-        <p>Categoria</p>
+        <p>{info.category}</p>
       </PathProduct>
 
       <ProductStyle>
         <SecondImgStyle>
-          <img src="https://imaginarium.vtexassets.com/arquivos/ids/9828773-800-auto?v=638101917618700000&width=800&height=auto&aspect=true" />
+          <img src={info.img} />
         </SecondImgStyle>
-        <img src="https://imaginarium.vtexassets.com/arquivos/ids/9828773-800-auto?v=638101917618700000&width=800&height=auto&aspect=true" />
+        <img src={info.img} />
 
         <SepareteVertical />
 
         <InfoStyle>
-          <h1>CARREGADOR SEM FIO HARRY POTTER PLATAFORMA 9 3/4</h1>
+          <h1>{info.product}</h1>
           <h2>Disponibilidade: Imediata</h2>
 
-          <p>R$179,90</p>
-          <strong>R$89,90</strong>
+          <p>R${info.price}</p>
+          <strong>R${info.discountPrice}</strong>
           <span>
-            Em até 3x sem juros de <strong>R$29,97</strong>
+            Em até 3x sem juros de <strong>R${(info.discountPrice/3).toFixed(2)}</strong>
           </span>
 
           <ShopStyle>
@@ -58,17 +69,7 @@ export default function ProductPage() {
       <DescriptionStyle>
         <h1>Descrição do produto</h1>
         <p>
-          Imagina uma plataforma exclusiva pra apoiar o celular? Pronto, não
-          precisa mais imaginar. Como num passe de mágica, sem fios e sem
-          preocupação, carregue seu celular por indução. Compatível com
-          aparelhos com tecnologia Qi, para usar, basta conectar este carregador
-          a uma fonte de energia, colocar em cima e automaticamente ele começa a
-          carregar. Fácil assim. E o tamanho é super compacto, cabendo na mesa
-          do trabalho, na bolsa ou mochila. Especificações técnicas: Compatível
-          com aparelhos que possuam tecnologia Qi. Entrada: 5V DC / 2A Saída do
-          carregamento sem fio: 5V / 1A Potência 5W Saída do carregamento USB:
-          5V / 2A Temperatura de operação: 0 - 45°C Produto homologado pela
-          Anatel: N Homologação 09318-20-1256
+         {info.description}
         </p>
       </DescriptionStyle>
       <SepareteStyle />
@@ -115,6 +116,7 @@ const SecondImgStyle = styled.div`
   border-radius: 3px;
   height: 70px;
   width: 70px;
+  margin-right: 30px;
   img {
     height: 70px;
     width: 70px;

@@ -1,49 +1,39 @@
 import styled from "styled-components";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-import Categories from "../Components/Categories";
 import Product from "../Components/Product";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 
 export default function CategoryPage() {
+  const [products, setProducts] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const scroll = document.getElementById("1");
+    scroll.scrollIntoView();
+
+    const URL = `http://localhost:5000/category/${id}`;
+    const promise = axios.get(URL);
+    promise.then((res) => {
+      setProducts(res.data);
+    });
+    promise.catch((err) => console.log(err.data));
+  }, []);
+
   return (
     <>
       <Container>
         <Header />
-        <Categories />
-        <label>CATEGORIA</label>
+        <label id="1">{id}</label>
 
         <AllProducts>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {products.map((p) => (
+            <Product product={p.product} price={p.price} discountPrice={p.discountPrice} img={p.img} />
+          ))}
         </AllProducts>
+
       </Container>
       <Footer />
     </>
@@ -63,5 +53,5 @@ const AllProducts = styled.div`
   margin-top: 30px;
   display: flex;
   flex-flow: wrap;
-  gap: 7px;
+  gap: 15px;
 `;
