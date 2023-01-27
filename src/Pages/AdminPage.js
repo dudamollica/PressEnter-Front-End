@@ -4,8 +4,9 @@ import Header from "../Components/Header";
 
 export default function AdminPage() {
   return (
+    <>
+    <Header />
     <AdminStyle>
-      <Header />
       <Link to="/admin-category">
         <CategoryButton>Editar Categorias</CategoryButton>
       </Link>
@@ -16,6 +17,7 @@ export default function AdminPage() {
         <UserButton>Editar Usuários</UserButton>
       </Link>
     </AdminStyle>
+    </>
   );
 }
 
