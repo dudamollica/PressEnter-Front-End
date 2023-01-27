@@ -3,15 +3,22 @@ import styled from "styled-components";
 import Logo from "../Assets/logo.png";
 import { AuthContext } from "../AppContext/auth";
 import { principal, tertiary } from "../Constants/Colors";
+import logoGif from "../Assets/logo.gif"
+import Login from "./Login";
+
+
+
+
 
 export default function Header() {
   const { carCount } = useContext(AuthContext);
   const [showSignIn, setShowSignIn] = useState(false);
 
+  
   return (
     <HeaderContainer>
       <HeaderStyle>
-        <img src={Logo} alt="Logo" />
+        <img src={logoGif} alt="Logo" />
         <input type="search" placeholder="Pesquise..." />
         <div
           onClick={() =>
@@ -19,7 +26,7 @@ export default function Header() {
           }
         >
           <ion-icon name="person"></ion-icon>
-          <span>Olá fulano</span>
+          <span>Login/Cadastro</span>
         </div>
         <div>
           <ion-icon name="call"></ion-icon>
@@ -30,16 +37,8 @@ export default function Header() {
           <span>Carrinho</span>
         </div>
       </HeaderStyle>
-      <EnterStyle showSignIn={showSignIn}>
-        <div>
-          <ion-icon name="person-outline"></ion-icon>
-          Cadastrar
-        </div>
-        <div>
-          <ion-icon name="enter-outline"></ion-icon>
-          Entrar
-        </div>
-      </EnterStyle>
+
+      <Login showSignIn={showSignIn} setShowSignIn={setShowSignIn}/> 
 
       <CounterStyle>{carCount}</CounterStyle>
     </HeaderContainer>
@@ -103,25 +102,3 @@ const CounterStyle = styled.div`
   justify-content: center;
 `;
 
-const EnterStyle = styled.div`
-  position: absolute;
-  top: 70px;
-  right: 240px;
-  background-color: #f4f4f4;
-  height: 70px;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: 25px;
-  display: ${(props) => !props.showSignIn && "none"};
-  color: gray;
-  div {
-    font-size: 20px;
-    :hover {
-      color: black;
-      cursor: pointer;
-    }
-  }
-`;
