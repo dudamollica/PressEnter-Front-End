@@ -82,7 +82,7 @@ export default function ProductPage() {
 
 const PathProduct = styled.div`
   display: flex;
-  margin-top: 130px;
+  margin-top: 140px;
   margin-bottom: 30px;
   margin-left: 70px;
   font-size: 20px;

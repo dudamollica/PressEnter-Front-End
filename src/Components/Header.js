@@ -49,14 +49,13 @@ const HeaderContainer = styled.div`
 
 const HeaderStyle = styled.div`
   position: relative;
-  height: 90px;
   background-color: ${principal};
   display: flex;
   align-items: center;
   justify-content: space-around;
   img {
-    height: 90px;
-    width: 210px;
+    height: 120px;
+    margin-left: 20px;
   }
   input {
     height: 50px;
@@ -67,7 +66,7 @@ const HeaderStyle = styled.div`
   }
   div {
     color: ${tertiary};
-    font-size: 25px;
+    font-size: 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,7 +83,7 @@ const HeaderStyle = styled.div`
 
 const CounterStyle = styled.div`
   position: absolute;
-  top: 20px;
+  top: 25px;
   right: 36px;
   background-color: white;
   border-radius: 50%;

@@ -4,7 +4,12 @@ import AuthProvider from "./AppContext/auth.js";
 import MainPage from "./Pages/MainPage";
 import ProductPage from "./Pages/ProductPage";
 import CategoryPage from "./Pages/CategoryPage";
-import AdminPage from "./Pages/AdminPage";
+import AdminPage from "./Pages/Admin/AdminPage";
+import {
+  AdminCategory,
+  AdminUser,
+} from "./Pages/Admin/AdminCategory";
+import AdminProduct from "./Pages/Admin/AdminProduct";
 
 function App() {
   return (
@@ -17,9 +22,9 @@ function App() {
             <Route path="/product/:id?" element={<ProductPage />} />
             <Route path="/category/:id" element={<CategoryPage />} />
             <Route path="/admin" element={<AdminPage />} />
-            <Route path="/admin-product" element={<AdminPage />} />
-            <Route path="/admin-category" element={<AdminPage />} />
-            <Route path="/admin-user" element={<AdminPage />} />
+            <Route path="/admin-product" element={<AdminProduct />} />
+            <Route path="/admin-category" element={<AdminCategory />} />
+            <Route path="/admin-user" element={<AdminUser />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

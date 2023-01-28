@@ -23,7 +23,7 @@ export default function Categories() {
           <ion-icon name="list-outline"></ion-icon>
           <p>Categorias</p>
         </div>
-        {categories.map((c)=><Link to={`/category/${c}`}>{c}</Link>)}
+        {categories.map((c)=><Link key={c} to={`/category/${c}`}>{c}</Link>)}
       </CategoriesHeaderStyle>
     </>
   );
@@ -40,7 +40,7 @@ const CategoriesHeaderStyle = styled.div`
   padding-top: 20px;
   gap: 10px;
   position: absolute;
-  top: 90px;
+  top: 120px;
   left: 0px;
   div {
     display: flex;
