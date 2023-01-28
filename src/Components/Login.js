@@ -7,10 +7,10 @@ import axios from "axios";
 
 
 export default function Login({ showSignIn, setShowSignIn }) {
-    const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { saveToken } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     function signIn(e) {
         e.preventDefault()
@@ -18,11 +18,13 @@ export default function Login({ showSignIn, setShowSignIn }) {
             email: email,
             password: password
           }
-      
+
           const url = `${process.env.REACT_APP_API_URL}/signIn`
           const promise = axios.post(url, body)
-          promise.then((res) => { saveToken(res.data.token); setShowSignIn(false)})
-          promise.catch(err => console.log(err.response.data))
+          promise.then((res) => { saveToken(res.data.token); setShowSignIn(false); navigate('/')})
+          promise.catch(err => alert(err.response.data))
+          
+
     }
 
     return (
@@ -49,7 +51,7 @@ export default function Login({ showSignIn, setShowSignIn }) {
 
                     <StyledButton>PressEnter</StyledButton>
                 </form>
-                <StyledLink to="/signUp">Cadastre-se!</StyledLink>
+                <StyledLink to="/sign-up" onClick={()=>setShowSignIn(false)}>Cadastre-se!</StyledLink>
             </StyledContainer>
 
         </EnterStyle>

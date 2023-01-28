@@ -4,6 +4,7 @@ import { AuthContext } from "../AppContext/auth";
 import { principal, tertiary } from "../Constants/Colors";
 import logoGif from "../Assets/logo.gif"
 import Login from "./Login";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const { carCount } = useContext(AuthContext);
@@ -12,7 +13,8 @@ export default function Header() {
   return (
     <HeaderContainer>
       <HeaderStyle>
-        <img src={logoGif} alt="Logo" />
+        <Link to="/"> <img src={logoGif} alt="Logo" /></Link>
+       
         <input type="search" placeholder="Pesquise..." />
         <div
           onClick={() =>
