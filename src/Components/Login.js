@@ -1,9 +1,10 @@
 import styled from "styled-components"
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom"
-import { principal, tertiary } from "../Constants/Colors";
+import { principal } from "../Constants/Colors";
 import { AuthContext } from "../AppContext/auth";
 import axios from "axios";
+import Close from "../Assets/close.png";
 
 
 export default function Login({ showSignIn, setShowSignIn }) {
@@ -31,6 +32,7 @@ export default function Login({ showSignIn, setShowSignIn }) {
         <EnterStyle showSignIn={showSignIn}>
 
             <StyledContainer>
+                <CloseSign src={Close} onClick={() => setShowSignIn(false)}/>
                 <h1>LOGIN</h1>
                 <form onSubmit={signIn}>
                     <StyledInput name="email" 
@@ -51,7 +53,7 @@ export default function Login({ showSignIn, setShowSignIn }) {
 
                     <StyledButton>PressEnter</StyledButton>
                 </form>
-                <StyledLink to="/sign-up" onClick={()=>setShowSignIn(false)}>Cadastre-se!</StyledLink>
+                <StyledLink to="/sign-up" onClick={()=>setShowSignIn(false)}>Ainda não tem uma conta? Cadastre-se!</StyledLink>
             </StyledContainer>
 
         </EnterStyle>
@@ -59,12 +61,19 @@ export default function Login({ showSignIn, setShowSignIn }) {
 
 }
 
+const CloseSign = styled.img`
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+`;
 
 const EnterStyle = styled.div`
-position: absolute;
+  position: absolute;
   background-color: rgba(0, 0, 0, .7);
   height: 100vh;
-  width: 500vh;
+  width: 100%;
   display: ${(props) => !props.showSignIn && "none"};
 
   div {
@@ -76,34 +85,35 @@ position: absolute;
 
 `;
 const StyledContainer = styled.div`
-margin-top: 30px;
-    position: absolute;
-    background-color:${principal};
-    width: 500px;
-    height: 500px;
-    margin-left: 500px;
-    border: 1px ${tertiary} solid;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 15px;
-    h1{
-      margin-bottom: 50px;
-      font-size: 25px;
-    }
-    form{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  background-color:${principal};
+  width: 500px;
+  height: 500px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  h1{
+    font-size: 32px;
+    color: #FFFFFF;
+    font-weight: 400;
+    margin-bottom: 50px;
+  }
+  form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+`;
 
-    }
-
-    
-`
 const StyledInput = styled.input`
- width: 326px;
+  width: 326px;
   height: 58px;
   margin-bottom: 13px;
   padding: 15px;
@@ -115,6 +125,16 @@ const StyledInput = styled.input`
     color: #000000;
     font-weight: 400;
   }
+  :focus{
+    outline: none;
+    border: 2px solid #CCCCCC;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+    padding-left: 11px;
+  }
+    :focus::placeholder {
+        color: transparent;
+    }
 `
 const StyledButton = styled.button`
   width: 240px;
@@ -132,9 +152,14 @@ const StyledButton = styled.button`
   color: #000000;
 `
 const StyledLink = styled(Link)`
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+  font-weight: 700;
   font-size: 15px;
-  line-height: 18px;
-  text-decoration: none;
+  text-align: center;
   color: #FFFFFF;
-  margin-top: 20px;
+  &:focus, &:hover, &:visited, &:link, &:active {
+      text-decoration: none;
+  }
 `

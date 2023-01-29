@@ -6,6 +6,7 @@ import ProductPage from "./Pages/ProductPage";
 import CategoryPage from "./Pages/CategoryPage";
 import AdminPage from "./Pages/AdminPage";
 import SignUpPage from "./Pages/SignUpPage";
+import CartPage from "./Pages/CartPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/admin-category" element={<AdminPage />} />
             <Route path="/admin-user" element={<AdminPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="/cart" element={<CartPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

@@ -49,6 +49,9 @@ button:hover{
 div, h1,h2,span, button, input{
 	font-family: 'Recursive';
 }
+* {
+	font-family: 'Raleway';
+} 
 `;
 
 export default GlobalStyle;

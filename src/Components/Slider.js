@@ -26,8 +26,8 @@ const MostSeenContainer = styled.div`
     font-size: 35px;
     position: absolute;
     left: ${(props) =>
-      (props.titlePosition == "mainPage" && "50%") ||
-      (props.titlePosition == "productPage" && "42%")};
+      (props.titlePosition === "mainPage" && "50%") ||
+      (props.titlePosition === "productPage" && "42%")};
   }
 `;
 
