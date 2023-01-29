@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { secondary } from "../Constants/Colors";
@@ -16,7 +16,7 @@ export default function Product(props) {
         onMouseOver={() => setShowShop(true)}
         onMouseOut={() => setShowShop(false)}
       >
-        <img src={img} />
+        <img src={img} alt="product-img"/>
         <h2>{product}</h2>
         <p>R${price}</p>
         <strong>R${discountPrice}</strong>

@@ -4,7 +4,7 @@ import Footer from "../Components/Footer";
 import Product from "../Components/Product";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function CategoryPage() {
   const [products, setProducts] = useState([]);
@@ -14,13 +14,13 @@ export default function CategoryPage() {
     const scroll = document.getElementById("1");
     scroll.scrollIntoView();
 
-    const URL = `http://localhost:5000/category/${id}`;
+    const URL = `${process.env.REACT_APP_API_URL}/category/${id}`;
     const promise = axios.get(URL);
     promise.then((res) => {
       setProducts(res.data);
     });
     promise.catch((err) => console.log(err.data));
-  }, []);
+  }, [id]);
 
   return (
     <>
