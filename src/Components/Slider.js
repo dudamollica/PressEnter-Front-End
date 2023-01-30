@@ -1,14 +1,43 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Product from "./Product";
+import axios from "axios";
 
 export default function Slider(props) {
-  const { titlePosition, title} = props;
+
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+  const { titlePosition, title } = props;
+  const [products, setProducts] = useState([]);
+  shuffleArray(products)
+
+  useEffect(() => {
+    const URL = `${process.env.REACT_APP_API_URL}/product`;
+    const promise = axios.get(URL);
+    promise.then((res) => {
+      setProducts(shuffleArray(res.data).filter((p, index) => index <= 5));
+    });
+    promise.catch((err) => console.log(err.data));
+
+  }, []);
 
   return (
-    <MostSeenContainer titlePosition={titlePosition} >
+    <MostSeenContainer titlePosition={titlePosition}>
       <h1>{title}</h1>
       <ImgContainer>
-        <Product/>
+        {products.map((p, index) => (
+          <Product key={`${index}a`}
+            product={p.product}
+            price={p.price}
+            discountPrice={p.discountPrice}
+            img={p.img}
+          />
+        ))}
       </ImgContainer>
     </MostSeenContainer>
   );
@@ -19,7 +48,7 @@ const MostSeenContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   font-family: "recursive";
-  overflow-x: scroll;
+  overflow: scroll;
   box-sizing: border-box;
   margin-top: 40px;
   h1 {

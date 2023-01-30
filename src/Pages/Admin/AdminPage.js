@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 
 export default function AdminPage() {
   return (
@@ -49,3 +49,5 @@ const UserButton = styled.button`
   background-color: yellow;
   border-color: yellow;
 `;
+
+   
