@@ -13,9 +13,6 @@ export default function AdminPage() {
       <Link to="/admin-product">
         <ProductButton>Editar Produtos</ProductButton>
       </Link>
-      <Link to="/admin-user">
-        <UserButton>Editar Usuários</UserButton>
-      </Link>
     </AdminStyle>
     </>
   );

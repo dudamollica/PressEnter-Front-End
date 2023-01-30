@@ -23,7 +23,7 @@ export function AdminCategory() {
     promise.then((res) => {
       setCategories(res.data);
       setName("");
-      alert("Categoria cadastrada com sucesso")
+      alert("Categoria cadastrada com sucesso");
     });
     promise.catch((err) => console.log(err.data));
   }
@@ -36,11 +36,11 @@ export function AdminCategory() {
         <input
           type="text"
           placeholder="Nome da categoria"
-          required
           value={name}
+          required
           onChange={(e) => setName(e.target.value)}
         />
-        <AddButton type="submit">Adicionar</AddButton>
+        <AddButton onSubmit={addCategory}>Adicionar</AddButton>
 
         <h1>Edite ou exclua uma categoria existente:</h1>
 
@@ -54,15 +54,23 @@ export function AdminCategory() {
 
 export function CategoryEditor(props) {
   const [openEditor, setOpenEditor] = useState(false);
+  const [newName, setNewName] = useState("");
 
   function deleteCategory(category) {
-    const wantToDelete = window.confirm(
-      "Você deseja excluir esta categoria?"
-    );
+    const wantToDelete = window.confirm("Você deseja excluir esta categoria?");
     if (wantToDelete) {
-      axios.delete(
-        `http://localhost:5000/admin-category/${category}`
-    ).then(window.location.reload())}
+      axios
+        .delete(`http://localhost:5000/admin-category/${category}`)
+        .then(window.location.reload());
+    }
+  }
+
+  function categoryEdit(category) {
+    if (newName) {
+      axios
+        .put(`http://localhost:5000/admin-category/${category}/${newName}`)
+        .then(window.location.reload());
+    }
   }
 
   return (
@@ -77,33 +85,29 @@ export function CategoryEditor(props) {
               openEditor ? setOpenEditor(false) : setOpenEditor(true);
             }}
           ></ion-icon>
-          <ion-icon name="trash-outline" onClick={(e)=>{
-            e.preventDefault()
-            deleteCategory(props.c)
-          }}></ion-icon>
+          <ion-icon
+            name="trash-outline"
+            onClick={(e) => {
+              e.preventDefault();
+              deleteCategory(props.c);
+            }}
+          ></ion-icon>
         </div>
       </CategorieStyle>
       <EditorInput
         openEditor={openEditor}
         type="text"
         placeholder="Novo Nome"
-        // required
-        // value={name}
-        // onChange={(e) => setName(e.target.value)}
+        value={newName}
+        onChange={(e) => setNewName(e.target.value)}
       />
-      <EditorButton openEditor={openEditor} type="submit">
+      <EditorButton
+        openEditor={openEditor}
+        onClick={()=>categoryEdit(props.c)}
+      >
         Editar
       </EditorButton>
     </>
-  );
-}
-
-export function AdminUser() {
-  return (
-    <Container>
-      <Header />
-      <FormStyle></FormStyle>
-    </Container>
   );
 }
 
@@ -150,9 +154,9 @@ export const CategorieStyle = styled.div`
   align-items: center;
   justify-content: space-between;
   div {
-    width: 40px;
-    display: flex;
-    justify-content: space-between;
+   ion-icon{
+    margin-right: 5px;
+   }
     :hover {
       cursor: pointer;
     }
@@ -174,8 +178,8 @@ export const EditorInput = styled.input`
   display: ${(props) => props.openEditor === false && "none"};
 `;
 
-export const EditorButton = styled.button`
-  display: ${(props) => !props.openEditor && "none"};
+export const EditorButton = styled.div`
+  display: ${(props) => !props.openEditor? "none": "flex"};
   background-color: #4fa64f;
   border-color: #85c285;
   border-radius: 5px;
@@ -184,4 +188,10 @@ export const EditorButton = styled.button`
   margin-top: 10px;
   margin-bottom: 15px;
   width: 200px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  :hover{
+    cursor: pointer;
+  }
 `;

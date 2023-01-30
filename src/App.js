@@ -5,10 +5,7 @@ import MainPage from "./Pages/MainPage";
 import ProductPage from "./Pages/ProductPage";
 import CategoryPage from "./Pages/CategoryPage";
 import AdminPage from "./Pages/Admin/AdminPage";
-import {
-  AdminCategory,
-  AdminUser,
-} from "./Pages/Admin/AdminCategory";
+import { AdminCategory } from "./Pages/Admin/AdminCategory";
 import AdminProduct from "./Pages/Admin/AdminProduct";
 import SignUpPage from "./Pages/SignUpPage";
 import CartPage from "./Pages/CartPage";
@@ -26,7 +23,6 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin-product" element={<AdminProduct />} />
             <Route path="/admin-category" element={<AdminCategory />} />
-            <Route path="/admin-user" element={<AdminUser />} />
             <Route path="/sign-up" element={<SignUpPage />} />
             <Route path="/cart" element={<CartPage />} />
           </Routes>
