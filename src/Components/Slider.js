@@ -17,10 +17,10 @@ export default function Slider(props) {
   shuffleArray(products)
 
   useEffect(() => {
-    const URL = `http://localhost:5000/product`;
+    const URL = `${process.env.REACT_APP_API_URL}/product`;
     const promise = axios.get(URL);
     promise.then((res) => {
-      setProducts((res.data).filter((p, index) => index <= 5));
+      setProducts(shuffleArray(res.data).filter((p, index) => index <= 5));
     });
     promise.catch((err) => console.log(err.data));
 

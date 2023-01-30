@@ -9,7 +9,7 @@ export function AdminCategory() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/categories`)
+      .get(`${process.env.REACT_APP_API_URL}/categories`)
       .then((res) => {
         setCategories(res.data);
       })
@@ -18,7 +18,7 @@ export function AdminCategory() {
 
   function addCategory(e) {
     e.preventDefault();
-    const URL = `http://localhost:5000/admin-category`;
+    const URL = `${process.env.REACT_APP_API_URL}/admin-category`;
     const promise = axios.post(URL, { name });
     promise.then((res) => {
       setCategories(res.data);

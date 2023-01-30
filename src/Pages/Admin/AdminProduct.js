@@ -23,14 +23,14 @@ export default function AdminProduct() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/categories`)
+      .get(`${process.env.REACT_APP_API_URL}/categories`)
       .then((res) => {
         setCategories(res.data);
       })
       .catch((err) => console.log(err.data));
 
     axios
-      .get(`http://localhost:5000/product`)
+      .get(`${process.env.REACT_APP_API_URL}/product`)
       .then((res) => {
         setAllProducts((res.data).map((p)=>p.product));
       })
@@ -39,7 +39,7 @@ export default function AdminProduct() {
 
   function addProduct(e) {
     e.preventDefault();
-    const URL = `http://localhost:5000/admin-product`;
+    const URL = `${process.env.REACT_APP_API_URL}/admin-product`;
     const body = {
       product,
       price,
