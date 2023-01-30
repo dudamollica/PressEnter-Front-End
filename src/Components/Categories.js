@@ -6,7 +6,6 @@ import { secondary } from "../Constants/Colors";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
-  console.log(process.env.REACT_APP_API_URL)
 
   useEffect(() => {
     const URL = `${process.env.REACT_APP_API_URL}/categories`
