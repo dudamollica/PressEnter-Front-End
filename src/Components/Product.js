@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { secondary } from "../Constants/Colors";
 
+
 export default function Product(props) {
   const {product, price, discountPrice, img} = props
   const [showShop, setShowShop] = useState(false);
   const navigate = useNavigate()
- 
+
+
   return (
     <>
       <ProductStyle
