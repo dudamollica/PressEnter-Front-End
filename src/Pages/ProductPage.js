@@ -18,7 +18,7 @@ export default function ProductPage() {
     const scroll = document.getElementById("1");
     scroll.scrollIntoView();
 
-    const URL = `http://localhost:5000/product/${id}`;
+    const URL = `${process.env.REACT_APP_API_URL}/product/${id}`;
     const promise = axios.get(URL);
     promise.then((res) => {
       setInfo(res.data);
@@ -33,10 +33,7 @@ export default function ProductPage() {
       }
     };
     const body = {
-      productId: info.id,
-      image: info.img,
-      product: info.product,
-      price: info.discountPrice
+      productId: info.id
     }
 
     axios.post(`${process.env.REACT_APP_API_URL}/carts`, body, config)
