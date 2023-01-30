@@ -4,7 +4,9 @@ export const AuthContext = createContext({});
 
 export default function AuthProvider({ children }) {
   const [token, setToken] = useState("");
-  const [cart, setCart] = useState(0)
+  const [cart, setCart] = useState(0);
+  const [userConnected, setUserConnected] = useState(false);
+  const [user, setUser] = useState('');
   const [showSignIn, setShowSignIn] = useState(false);
 
   function saveToken(token) {
@@ -19,7 +21,9 @@ export default function AuthProvider({ children }) {
         saveToken,
         cart,
         setCart,
-        showSignIn, setShowSignIn
+        showSignIn, setShowSignIn,
+        userConnected,setUserConnected,
+        user,setUser,
       }}
     >
       {children}
