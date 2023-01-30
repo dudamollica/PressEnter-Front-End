@@ -79,7 +79,7 @@ export default function ProductPage() {
           </span>
 
           <ShopStyle>
-            <button>
+            <button onClick={addCart}>
               Adicionar ao<ion-icon name="cart-outline"></ion-icon>
             </button>
           </ShopStyle>

@@ -30,7 +30,7 @@ export default function CategoryPage() {
 
         <AllProducts>
           {products.map((p) => (
-            <Product product={p.product} price={p.price} discountPrice={p.discountPrice} img={p.img} />
+            <Product product={p.product} price={p.price} discountPrice={p.discountPrice} img={p.img} key={p.product}/>
           ))}
         </AllProducts>
 

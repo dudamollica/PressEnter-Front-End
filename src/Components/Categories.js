@@ -23,7 +23,7 @@ export default function Categories() {
           <ion-icon name="list-outline"></ion-icon>
           <p>Categorias</p>
         </div>
-        {categories.map((c)=><Link to={`/category/${c}`}>{c}</Link>)}
+        {categories.map((c)=><Link to={`/category/${c}`} key={c}>{c}</Link>)}
       </CategoriesHeaderStyle>
     </>
   );
