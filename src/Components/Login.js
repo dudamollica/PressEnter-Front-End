@@ -7,10 +7,12 @@ import axios from "axios";
 import Close from "../Assets/close.png";
 
 
+
 export default function Login({ showSignIn, setShowSignIn }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { saveToken } = useContext(AuthContext)
+    const { saveToken, setUserConnected, setUser } = useContext(AuthContext)
+    
     const navigate = useNavigate()
 
     function signIn(e) {
@@ -22,7 +24,7 @@ export default function Login({ showSignIn, setShowSignIn }) {
 
           const url = `${process.env.REACT_APP_API_URL}/signIn`
           const promise = axios.post(url, body)
-          promise.then((res) => { saveToken(res.data.token); setShowSignIn(false); navigate('/')})
+          promise.then((res) => {saveToken(res.data.token); setShowSignIn(false); navigate('/');setUser(res.data.name);setUserConnected(true)})
           promise.catch(err => alert(err.response.data))
           
 

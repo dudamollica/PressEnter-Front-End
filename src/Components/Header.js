@@ -8,9 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Cart from "../Assets/cart.png";
 
 export default function Header() {
-  const { cart, showSignIn, setShowSignIn } = useContext(AuthContext);
+  const { cart, showSignIn, setShowSignIn, userConnected, user } = useContext(AuthContext);
 
   const navigate = useNavigate();
+  const username = user[0]?.toUpperCase() + user.substring(1);
 
   return (
     <HeaderContainer>
@@ -28,7 +29,9 @@ export default function Header() {
           }}
         >
           <ion-icon name="person"></ion-icon>
-          <span>Login/Cadastro</span>
+
+          <span>{userConnected === false ? 'Login/Cadastro' : `Bem-vindo ${username}`}</span>
+
         </div>
         <div>
           <ion-icon name="call"></ion-icon>
