@@ -32,7 +32,7 @@ export default function AdminProduct() {
     axios
       .get(`http://localhost:5000/product`)
       .then((res) => {
-        setAllProducts(res.data);
+        setAllProducts((res.data).map((p)=>p.product));
       })
       .catch((err) => console.log(err.data));
   }, []);
@@ -138,13 +138,12 @@ export function ProductEditor(props) {
   const [openEditor, setOpenEditor] = useState(false);
 
   function deleteProduct(product) {
-    const wantToDelete = window.confirm(
-      "Você deseja excluir este produto?"
-    );
+    const wantToDelete = window.confirm("Você deseja excluir este produto?");
     if (wantToDelete) {
-      axios.delete(
-        `http://localhost:5000/admin-product/${product}`
-    ).then(window.location.reload())}
+      axios
+        .delete(`http://localhost:5000/admin-product/${product}`)
+        .then(window.location.reload());
+    }
   }
 
   return (

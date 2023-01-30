@@ -15,7 +15,7 @@ export default function ProductPage() {
     const scroll = document.getElementById("1");
     scroll.scrollIntoView();
 
-    const URL = `${process.env.REACT_APP_API_URL}/product/${id}`;
+    const URL = `https://pressenter-api.onrender.com/product/${id}`;
     const promise = axios.get(URL);
     promise.then((res) => {
       setInfo(res.data);

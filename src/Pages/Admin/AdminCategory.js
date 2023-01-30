@@ -171,7 +171,7 @@ export const AddButton = styled.button`
 `;
 
 export const EditorInput = styled.input`
-  display: ${(props) => props.openEditor == false && "none"};
+  display: ${(props) => props.openEditor === false && "none"};
 `;
 
 export const EditorButton = styled.button`
