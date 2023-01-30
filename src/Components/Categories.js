@@ -25,7 +25,7 @@ export default function Categories() {
           <p>Categorias</p>
         </div>
         <Container>
-        {categories.map((c)=><Link key={c} to={`/category/${c}` key={c}}>{c}</Link>)}
+        {categories.map((c)=><Link key={c} to={`/category/${c}`}>{c}</Link>)}
         </Container>
       </CategoriesStyle>
     </>
