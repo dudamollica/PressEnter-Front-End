@@ -6,9 +6,7 @@ import {
   Container,
   FormStyle,
   CategorieStyle,
-  AddButton,
-  EditorButton,
-  EditorInput,
+  AddButton
 } from "./AdminCategory";
 
 export default function AdminProduct() {
@@ -32,7 +30,7 @@ export default function AdminProduct() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/product`)
       .then((res) => {
-        setAllProducts((res.data).map((p)=>p.product));
+        setAllProducts(res.data.map((p) => p.product));
       })
       .catch((err) => console.log(err.data));
   }, []);
@@ -47,7 +45,6 @@ export default function AdminProduct() {
       description,
       img,
       category,
-      categories,
     };
     const promise = axios.post(URL, body);
     promise.then((res) => {
@@ -135,7 +132,6 @@ export default function AdminProduct() {
 }
 
 export function ProductEditor(props) {
-  const [openEditor, setOpenEditor] = useState(false);
 
   function deleteProduct(product) {
     const wantToDelete = window.confirm("Você deseja excluir este produto?");
@@ -152,13 +148,6 @@ export function ProductEditor(props) {
         {props.p}
         <div>
           <ion-icon
-            name="pencil-outline"
-            onClick={(e) => {
-              e.preventDefault();
-              openEditor ? setOpenEditor(false) : setOpenEditor(true);
-            }}
-          ></ion-icon>
-          <ion-icon
             name="trash-outline"
             onClick={(e) => {
               e.preventDefault();
@@ -167,25 +156,6 @@ export function ProductEditor(props) {
           ></ion-icon>
         </div>
       </CategorieStyle>
-      <EditorInput
-        openEditor={openEditor}
-        type="text"
-        placeholder="Novo Nome"
-        // required
-        // value={name}
-        // onChange={(e) => setName(e.target.value)}
-      />
-      <EditorInput
-        openEditor={openEditor}
-        type="text"
-        placeholder="Novo Preço"
-        // required
-        // value={name}
-        // onChange={(e) => setName(e.target.value)}
-      />
-      <EditorButton openEditor={openEditor} type="submit">
-        Editar
-      </EditorButton>
     </>
   );
 }
