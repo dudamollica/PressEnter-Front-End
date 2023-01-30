@@ -15,7 +15,7 @@ export default function ProductPage() {
     const scroll = document.getElementById("1");
     scroll.scrollIntoView();
 
-    const URL = `${process.env.REACT_APP_API_URL}/${id}`;
+    const URL = `http://localhost:5000/product/${id}`;
     const promise = axios.get(URL);
     promise.then((res) => {
       setInfo(res.data);
