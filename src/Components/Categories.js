@@ -8,7 +8,7 @@ export default function Categories() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const URL = `https://pressenter-api.onrender.com/categories`
+    const URL = `h${process.env.REACT_APP_API_URL}/categories`
     const promise = axios.get(URL);
     promise.then((res) => {
       setCategories(res.data);
