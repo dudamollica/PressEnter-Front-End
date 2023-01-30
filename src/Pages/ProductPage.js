@@ -33,10 +33,7 @@ export default function ProductPage() {
       }
     };
     const body = {
-      productId: info.id,
-      image: info.img,
-      product: info.product,
-      price: info.discountPrice
+      productId: info.id
     }
 
     axios.post(`${process.env.REACT_APP_API_URL}/carts`, body, config)
