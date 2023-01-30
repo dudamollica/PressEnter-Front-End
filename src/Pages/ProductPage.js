@@ -2,14 +2,17 @@ import Header from "../Components/Header";
 import styled from "styled-components";
 import Footer from "../Components/Footer";
 import Slider from "../Components/Slider";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { secondary } from "../Constants/Colors";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../AppContext/auth";
 import axios from "axios";
 
 export default function ProductPage() {
   const { id } = useParams();
   const [info, setInfo] = useState([])
+  const { token } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const scroll = document.getElementById("1");
@@ -22,6 +25,29 @@ export default function ProductPage() {
     });
     promise.catch((err) => console.log(err.data));
   }, [id]);
+
+  function addCart() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+    const body = {
+      productId: info.id,
+      image: info.img,
+      product: info.product,
+      price: info.discountPrice
+    }
+
+    axios.post(`${process.env.REACT_APP_API_URL}/carts`, body, config)
+      .then(() => {
+        alert("Adicionado no carrinho com sucesso");
+        navigate(`/product/${id}`);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  }
 
   return (
     <>
@@ -38,7 +64,7 @@ export default function ProductPage() {
         <SecondImgStyle>
           <img src={info.img} alt="product-info" />
         </SecondImgStyle>
-        <img src={info.img} alt="product-info2"/>
+        <img src={info.img} alt="product-info2" />
 
         <SepareteVertical />
 
@@ -53,12 +79,7 @@ export default function ProductPage() {
           </span>
 
           <ShopStyle>
-            <div>
-              <label>Quantidade</label>
-              <input type="number" placeholder={1} min={1}></input>
-            </div>
-            <button>Comprar</button>
-            <button>
+            <button onClick={addCart}>
               Adicionar ao<ion-icon name="cart-outline"></ion-icon>
             </button>
           </ShopStyle>
@@ -178,7 +199,9 @@ const ShopStyle = styled.div`
     }
   }
   button {
-    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
