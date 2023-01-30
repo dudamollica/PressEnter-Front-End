@@ -14,7 +14,7 @@ export default function MainPage() {
       <Header />
       <Categories/>
       <BannerImg src="https://png.pngtree.com/thumb_back/fw800/background/20201106/pngtree-black-friday-neon-style-with-cart-background-banner-image_465966.jpg"/>
-      <Slider titlePosition="mainPage" title="MAIS VISTOS"/>
+      <Slider titlePosition="mainPage" title="MAIS VENDIDOS"/>
       <Slider titlePosition="mainPage" title="LANÇAMENTOS"/>
     </MainPageContainer>
     <Footer />

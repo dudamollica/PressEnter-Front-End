@@ -15,7 +15,7 @@ export default function ProductPage() {
     const scroll = document.getElementById("1");
     scroll.scrollIntoView();
 
-    const URL = `http://localhost:5000/product/${id}`;
+    const URL = `${process.env.REACT_APP_API_URL}/product/${id}`;
     const promise = axios.get(URL);
     promise.then((res) => {
       setInfo(res.data);
@@ -74,7 +74,7 @@ export default function ProductPage() {
       </DescriptionStyle>
       <SepareteStyle />
 
-      <Slider titlePosition="productPage" title="MAIS VENDIDOS" />
+      <Slider titlePosition="productPage" title="MAIS VISTOS" />
       <Footer />
     </>
   );
