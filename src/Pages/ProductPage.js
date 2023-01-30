@@ -15,7 +15,7 @@ export default function ProductPage() {
     const scroll = document.getElementById("1");
     scroll.scrollIntoView();
 
-    const URL = `${process.env.REACT_APP_API_URL}/product/${id}`;
+    const URL = `https://pressenter-api.onrender.com/product/${id}`;
     const promise = axios.get(URL);
     promise.then((res) => {
       setInfo(res.data);
@@ -82,7 +82,7 @@ export default function ProductPage() {
 
 const PathProduct = styled.div`
   display: flex;
-  margin-top: 130px;
+  margin-top: 140px;
   margin-bottom: 30px;
   margin-left: 70px;
   font-size: 20px;

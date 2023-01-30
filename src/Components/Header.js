@@ -2,30 +2,30 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../AppContext/auth";
 import { principal, tertiary } from "../Constants/Colors";
-import logoGif from "../Assets/logo.gif"
+import logoGif from "../Assets/logo.gif";
 import Login from "./Login";
 import { Link, useNavigate } from "react-router-dom";
-import Cart from "../Assets/cart.png"
-
+import Cart from "../Assets/cart.png";
 
 export default function Header() {
   const { cart, showSignIn, setShowSignIn } = useContext(AuthContext);
-
 
   const navigate = useNavigate();
 
   return (
     <HeaderContainer>
       <HeaderStyle>
-        <Link to="/"> <Logo src={logoGif} alt="Logo" /></Link>
+        <Link to="/">
+          {" "}
+          <img src={logoGif} alt="Logo" />
+        </Link>
 
         <input type="search" placeholder="Pesquise..." />
         <div
           onClick={() => {
-            showSignIn ? setShowSignIn(false) : setShowSignIn(true)
-            navigate("/")
-          }
-          }
+            showSignIn ? setShowSignIn(false) : setShowSignIn(true);
+            navigate("/");
+          }}
         >
           <ion-icon name="person"></ion-icon>
           <span>Login/Cadastro</span>
@@ -34,25 +34,57 @@ export default function Header() {
           <ion-icon name="call"></ion-icon>
           <span>Suporte</span>
         </div>
-        <Cartdiv
-          onClick={() =>
-            navigate("/cart")
-          }
-        >
+        <Cartdiv onClick={() => navigate("/cart")}>
           <Icon>
             <img src={Cart} alt="cart-icon" />
-            <CounterStyle><p>{cart}</p></CounterStyle>
+            <CounterStyle>
+              <p>{cart}</p>
+            </CounterStyle>
           </Icon>
           <span>Carrinho</span>
         </Cartdiv>
       </HeaderStyle>
 
       <Login showSignIn={showSignIn} setShowSignIn={setShowSignIn} />
-
-
     </HeaderContainer>
   );
 }
+
+const HeaderStyle = styled.div`
+  position: relative;
+  height: 120px;
+  background-color: ${principal};
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-right: 20px;
+  img {
+    height: 120px;
+    width: 210px;
+  }
+  input {
+    height: 50px;
+    width: 500px;
+    border-radius: 5px;
+    padding-left: 7px;
+    margin-left: 20px;
+  }
+  div {
+    color: ${tertiary};
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "recursive";
+    span {
+      font-size: 20px;
+    }
+    :hover {
+      color: white;
+      cursor: pointer;
+    }
+  }
+`;
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -63,13 +95,12 @@ const HeaderContainer = styled.div`
 `;
 
 const Icon = styled.div`
-  position: relative:
-  heigth: 27px;
+  height: 27px;
   width: 27px;
   padding-left: 15px;
-  float:left;
-  img{
-    heigth: 27px;
+  float: left;
+  img {
+    height: 27px;
     width: 27px;
   }
   :hover {
@@ -80,19 +111,14 @@ const Icon = styled.div`
 
 const Cartdiv = styled.div`
   position: relative;
-`;
-
-const Logo = styled.img`
-  height: 90px;
-  width: 210px;
-`;
-
-const HeaderStyle = styled.div`
-  height: 90px;
   background-color: ${principal};
   display: flex;
   align-items: center;
   justify-content: space-around;
+  img {
+    height: 120px;
+    margin-left: 20px;
+  }
   input {
     height: 7vh;
     width: 55vw;
@@ -101,20 +127,20 @@ const HeaderStyle = styled.div`
     margin-left: 15px;
     margin-right: 15px;
     border: none;
-    :focus{
+    :focus {
       outline: none;
-      border: 2px solid #CCCCCC;
+      border: 2px solid #cccccc;
       box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
       font-size: 20px;
       padding-left: 11px;
-  }
+    }
     :focus::placeholder {
-        color: transparent;
+      color: transparent;
     }
   }
   div {
     color: ${tertiary};
-    font-size: 25px;
+    font-size: 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,7 +161,7 @@ const HeaderStyle = styled.div`
 const CounterStyle = styled.div`
   position: absolute;
   top: -4px;
-  right: 28px;
+  right: 15px;
   background-color: orange;
   border-radius: 50%;
   width: 4px;
@@ -145,11 +171,13 @@ const CounterStyle = styled.div`
   text-align: center;
   align-items: center;
   justify-content: center;
-  p{
+  p {
     font-size: 13px;
     margin-left: 9px;
     font-weight: 700;
     margin-top: 0.5px;
+    :hover {
+      color: black;
+    }
   }
 `;
-

@@ -8,7 +8,7 @@ export default function Categories() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const URL = `${process.env.REACT_APP_API_URL}/categories`
+    const URL = `http://localhost:5000/categories`
     const promise = axios.get(URL);
     promise.then((res) => {
       setCategories(res.data);
@@ -18,18 +18,20 @@ export default function Categories() {
 
   return (
     <>
-      <CategoriesHeaderStyle>
+      <CategoriesStyle>
         <div>
           <ion-icon name="list-outline"></ion-icon>
           <p>Categorias</p>
         </div>
-        {categories.map((c)=><Link to={`/category/${c}`}>{c}</Link>)}
-      </CategoriesHeaderStyle>
+        <Container>
+        {categories.map((c)=><Link key={c} to={`/category/${c}`}>{c}</Link>)}
+        </Container>
+      </CategoriesStyle>
     </>
   );
 }
 
-const CategoriesHeaderStyle = styled.div`
+const CategoriesStyle = styled.div`
   width: 230px;
   box-sizing: border-box;
   background-color: #f4f4f4;
@@ -40,7 +42,7 @@ const CategoriesHeaderStyle = styled.div`
   padding-top: 20px;
   gap: 10px;
   position: absolute;
-  top: 90px;
+  top: 120px;
   left: 0px;
   div {
     display: flex;
@@ -60,3 +62,9 @@ const CategoriesHeaderStyle = styled.div`
     }
   }
 `;
+
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+line-height: 25px;
+`

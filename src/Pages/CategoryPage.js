@@ -30,7 +30,7 @@ export default function CategoryPage() {
 
         <AllProducts>
           {products.map((p) => (
-            <Product product={p.product} price={p.price} discountPrice={p.discountPrice} img={p.img} />
+            <Product key={p.img} product={p.product} price={p.price} discountPrice={p.discountPrice} img={p.img} />
           ))}
         </AllProducts>
 
@@ -41,8 +41,8 @@ export default function CategoryPage() {
 }
 
 const Container = styled.div`
-  margin-top: 110px;
-  margin-left: 240px;
+  margin-top: 160px;
+  margin-left: 100px;
   label {
     margin-left: 40px;
     font-size: 35px;

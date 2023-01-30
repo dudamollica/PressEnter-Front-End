@@ -23,7 +23,7 @@ export default function MainPage() {
 }
 
 const MainPageContainer = styled.div`
-margin-top: 110px;
+margin-top: 150px;
 margin-left: 240px;
 `
 const BannerImg = styled.img`
