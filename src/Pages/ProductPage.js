@@ -15,13 +15,13 @@ export default function ProductPage() {
     const scroll = document.getElementById("1");
     scroll.scrollIntoView();
 
-    const URL = `http://localhost:5000/product/${id}`;
+    const URL = `${process.env.REACT_APP_API_URL}/product/${id}`;
     const promise = axios.get(URL);
     promise.then((res) => {
       setInfo(res.data);
     });
     promise.catch((err) => console.log(err.data));
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -36,9 +36,9 @@ export default function ProductPage() {
 
       <ProductStyle>
         <SecondImgStyle>
-          <img src={info.img} />
+          <img src={info.img} alt="product-info" />
         </SecondImgStyle>
-        <img src={info.img} />
+        <img src={info.img} alt="product-info2"/>
 
         <SepareteVertical />
 
@@ -49,7 +49,7 @@ export default function ProductPage() {
           <p>R${info.price}</p>
           <strong>R${info.discountPrice}</strong>
           <span>
-            Em até 3x sem juros de <strong>R${(info.discountPrice/3).toFixed(2)}</strong>
+            Em até 3x sem juros de <strong>R${(info.discountPrice / 3).toFixed(2)}</strong>
           </span>
 
           <ShopStyle>
@@ -69,7 +69,7 @@ export default function ProductPage() {
       <DescriptionStyle>
         <h1>Descrição do produto</h1>
         <p>
-         {info.description}
+          {info.description}
         </p>
       </DescriptionStyle>
       <SepareteStyle />

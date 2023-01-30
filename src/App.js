@@ -10,6 +10,8 @@ import {
   AdminUser,
 } from "./Pages/Admin/AdminCategory";
 import AdminProduct from "./Pages/Admin/AdminProduct";
+import SignUpPage from "./Pages/SignUpPage";
+import CartPage from "./Pages/CartPage";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
             <Route path="/admin-product" element={<AdminProduct />} />
             <Route path="/admin-category" element={<AdminCategory />} />
             <Route path="/admin-user" element={<AdminUser />} />
+            <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="/cart" element={<CartPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
